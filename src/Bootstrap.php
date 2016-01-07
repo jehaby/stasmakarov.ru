@@ -2,32 +2,30 @@
 
 namespace Jehaby\Homepage;
 
-use Symfony\Component\HttpFoundation\Request;
 
 $environment = 'development';
 error_reporting(E_ALL);
 
 require '../vendor/autoload.php';
+
 $injector = include('Dependencies.php');
 
-$request = Request::createFromGlobals();
-$injector->share($request);
 
 
-// $whoops = new \Whoops\Run;
+ $whoops = new \Whoops\Run;
 
-// /**
-//  * Register the error handler
-//  */
-// $whoops = new \Whoops\Run;
-// if ($environment !== 'production') {
-//     $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
-// } else {
-//     $whoops->pushHandler(function($e){
-//         echo 'Friendly error page and send an email to the developer';
-//     });
-// }
-// $whoops->register();
+ /**
+  * Register the error handler
+  */
+ $whoops = new \Whoops\Run;
+ if ($environment !== 'production') {
+     $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+ } else {
+     $whoops->pushHandler(function($e){
+         echo 'Friendly error page and send an email to the developer';
+     });
+ }
+ $whoops->register();
 
 
 $routeDefinitionCallback = function (\FastRoute\RouteCollector $r) {
@@ -38,11 +36,6 @@ $routeDefinitionCallback = function (\FastRoute\RouteCollector $r) {
 };
 
 
-$twig = new \Twig_Environment(
-    new \Twig_Loader_Filesystem('../resources/views/'),
-    ['cache' => '../storage/twig-cache/']
-);
-$injector->share($twig);
 
 
 $dispatcher = \FastRoute\simpleDispatcher($routeDefinitionCallback);
@@ -63,7 +56,7 @@ switch ($routeInfo[0]) {
         $vars = $routeInfo[2];
 
         $class = $injector->make($className);
-        $class->$method($vars);
+        $class->$method($vars)->send(); // TODO: what if not Response?
         break;
 }
 

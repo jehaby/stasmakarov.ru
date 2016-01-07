@@ -1,12 +1,19 @@
+<!DOCTYPE html>
 <html>
-    <head>
-	<title>111</title>
-    </head>
-    <body>
-        <header></header>
-        <main>
-	    
-	</main>
-        <footer></footer>
-    </body>
+<head>
+    {% block head %}
+        <title>
+            {% block title %} {% endblock %}
+        </title>
+    {% endblock %}
+</head>
+<body>
+<header>
+    Menu here!
+</header>
+<main>
+    {% block content %}{% endblock %}
+</main>
+<footer></footer>
+</body>
 </html>
