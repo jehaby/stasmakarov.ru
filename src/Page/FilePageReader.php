@@ -4,20 +4,33 @@
 namespace Jehaby\Homepage\Page;
 
 use InvalidArgumentException;
+use League\CommonMark\CommonMarkConverter;
 
 
 class FilePageReader implements PageReader
 {
 
+    /**
+     * @var string
+     */
     private $pageFolder;
 
-    public function __construct($pageFolder)
+    /**
+     * @var CommonMarkConverter
+     */
+    private $converter;
+
+
+    public function __construct($pageFolder, CommonMarkConverter $converter)
     {
         if (!is_string($pageFolder)) {
             throw new InvalidArgumentException('pageFolder must be a string');
         }
         $this->pageFolder = $pageFolder;
+
+        $this->converter = $converter;
     }
+
 
     public function readBySlug($slug)
     {
@@ -31,7 +44,7 @@ class FilePageReader implements PageReader
             throw new PageNotFoundException($slug);
         }
 
-        return file_get_contents($path);
+        return $this->converter->convertToHtml(file_get_contents($path));
 
     }
 
