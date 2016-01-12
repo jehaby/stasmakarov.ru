@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "filp/whoops": "^1.1",
+        "filp/whoops": "^2.0",
         "symfony/http-foundation": "^3.0",
         "nikic/fast-route": "^0.7.0",
         "rdlowrey/auryn": "^1.1",

@@ -35,7 +35,7 @@ class Main
 
     public function index()
     {
-        $this->response->setContent($this->twig->render('index.twig'))->send();
+        return $this->response->setContent($this->twig->render('index.twig'));
     }
 
     public function contacts()
