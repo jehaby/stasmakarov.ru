@@ -1,18 +1,37 @@
 del {
     border-style: dotted;
-    /*
+    
+/*
     align-self: baseline;
 */
 }
 
 div {
-    margin: auto;2
+    margin: auto;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    
 /*
     justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-
 */
+}
+
+div span:first-child {
+    color: green;
+    align-self: flex-start;
+}
+
+div span:last-child {
+    color: blue;
+    align-self: flex-end;
+}
+
+div del {
+    align-self: baseline;
+}
+
+div * {
+    white-space: nowrap;
 }
