@@ -1,37 +1,60 @@
+body {
+    background-color: #ECFFE6;
+}
+
+span {
+    color: #778B71;
+}
+
 del {
-    border-style: dotted;
-    
-/*
-    align-self: baseline;
-*/
+    color: #D8F3CF;
 }
 
-div {
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-    
-/*
-    justify-content: center;
-*/
+#background > span, #background > del{
+    display: block;
 }
 
-div span:first-child {
-    color: green;
-    align-self: flex-start;
+#background {
+    font-size: 3em;
+    font-family: Sans;
 }
 
-div span:last-child {
-    color: blue;
-    align-self: flex-end;
+body, html
+{
+    height: 100%;
+}
+#table-container
+{
+    display:    table;
+    text-align: center;
+    width:      100%;
+    height:     90%;
+}
+#container
+{
+    display:        table-cell;
+    vertical-align: middle;
+}
+#main
+{
+    display: inline-block;
+}
+#background
+{
+
+}
+#contacts {
+    position: fixed;
+    right: 3%;
+    bottom: 3%;
+    text-align: right;
 }
 
-div del {
-    align-self: baseline;
+a {
+    color: #8EA886;
 }
 
-div * {
-    white-space: nowrap;
+a:visited {
+    color: #D8F3CF;
 }
+
